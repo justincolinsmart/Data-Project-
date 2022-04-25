@@ -1,5 +1,23 @@
 public class Student {
+    private int id;
+    private ArrayList<Day> Days = new ArrayList<Day>();
     public Student(){
-        
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public ArrayList<Day> getDays() {
+        return Days;
+    }
+
+    public void setDays(ArrayList<Day> days) {
+        Days = days;
     }
 }
