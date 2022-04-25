@@ -1,0 +1,15 @@
+import java.util.ArrayList;
+
+public class Students {
+    private ArrayList<Student> Students = new ArrayList<Student>();
+    public Students(){
+    }
+
+    public ArrayList<Student> getStudents() {
+        return Students;
+    }
+
+    public void setStudents(ArrayList<Student> students) {
+        Students = students;
+    }
+}
