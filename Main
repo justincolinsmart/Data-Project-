@@ -6,12 +6,32 @@ import java.util.*;
 
 class Main {
   public Main() throws IOException {
+    Scanner sc = new Scanner(System.in);
     FileReader input = new FileReader("Doctors.json");
 
     Gson gson = new Gson();
-    //Students s = gson.fromJson(input, Students.class);
-    for (int i = 0; i < Students.size(); i++){
+    Students students = gson.fromJson(input, Students.class);
     
+    
+    System.out.println("Please enter student ID:");
+    int studentNumber = sc.nextInt();
+    
+    for (int i = 0; i < students.size(); i++){
+      
+      if (students.get(i) == studentNumber){
+        for (Day d : Students.get(i).getDays()) {
+          System.out.println(d.getSleep());
+          System.out.println(d.getSugar());
+          System.out.println(d.getPhone());
+          System.out.println(d.getFruit());
+          System.out.println(d.getVegetables());
+          System.out.println(d.getCaffeine());
+          System.out.println(d.getStrength());
+          System.out.println(d.getModerate());
+          System.out.println(d.getHigh());
+          System.out.println(d.getSteps());
+        }
+      }
     
     }
     
