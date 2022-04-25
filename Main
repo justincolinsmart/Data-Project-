@@ -20,16 +20,17 @@ class Main {
       
       if (students.get(i) == studentNumber){
         for (Day d : Students.get(i).getDays()) {
-          System.out.println(d.getSleep());
-          System.out.println(d.getSugar());
-          System.out.println(d.getPhone());
-          System.out.println(d.getFruit());
-          System.out.println(d.getVegetables());
-          System.out.println(d.getCaffeine());
-          System.out.println(d.getStrength());
-          System.out.println(d.getModerate());
-          System.out.println(d.getHigh());
-          System.out.println(d.getSteps());
+          System.out.format("%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f", d.getSleep(), d.getSugar(), d.getPhone(), d.getFruit(), d.getVegetables(), d.getCaffeine(), d.getStrength(), d.getModerate(), d.getHigh(), d.getSteps());
+          //System.out.println(d.getSleep());
+          //System.out.println(d.getSugar());
+          //System.out.println(d.getPhone());
+          //System.out.println(d.getFruit());
+          //System.out.println(d.getVegetables());
+          //System.out.println(d.getCaffeine());
+          //System.out.println(d.getStrength());
+          //System.out.println(d.getModerate());
+          //System.out.println(d.getHigh());
+          //System.out.println(d.getSteps());
         }
       }
     
