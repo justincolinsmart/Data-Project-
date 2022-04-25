@@ -1,0 +1,27 @@
+import java.io.FileReader;
+import java.io.FileNotFoundException;
+import java.io.IOException; 
+import com.google.gson.Gson;
+import java.util.*;
+
+class Main {
+  public Main() throws IOException {
+    FileReader input = new FileReader("Doctors.json");
+
+    Gson gson = new Gson();
+    //Students s = gson.fromJson(input, Students.class);
+    for (int i = 0; i < Students.size(); i++){
+    
+    
+    }
+    
+    
+    
+    input.close();
+
+    
+  }
+  public static void main(String[] args) {
+    new Main();
+  }
+}
