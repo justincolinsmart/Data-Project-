@@ -1,15 +1,29 @@
 import java.util.ArrayList;
 
 public class Students {
-    private ArrayList<Student> Students = new ArrayList<Student>();
+    private ArrayList<Student> students = new ArrayList<Student>();
     public Students(){
     }
 
     public ArrayList<Student> getStudents() {
-        return Students;
+        return students;
     }
 
     public void setStudents(ArrayList<Student> students) {
         Students = students;
     }
+    
+    public void oneStudent(int studentNumber){
+        for (int i = 0; i < getStudents.size(); i++){
+
+          if (students.get(i) == studentNumber){
+            for (Day d : Students.get(i).getDays()) {
+              System.out.format("%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f", d.getSleep(), d.getSugar(), d.getPhone(), d.getFruit(), d.getVegetables(), d.getCaffeine(), d.getStrength(), d.getModerate(), d.getHigh(), d.getSteps());
+             
+            }
+          }
+
+        }
+    }
+    
 }
