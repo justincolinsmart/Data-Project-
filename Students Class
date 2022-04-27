@@ -10,20 +10,16 @@ public class Students {
     }
 
     public void setStudents(ArrayList<Student> students) {
-        Students = students;
+        this.students = students;
     }
     
     public void oneStudent(int studentNumber){
-        for (int i = 0; i < getStudents.size(); i++){
-
-          if (students.get(i) == studentNumber){
-            for (Day d : Students.get(i).getDays()) {
-              System.out.format("%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f", d.getSleep(), d.getSugar(), d.getPhone(), d.getFruit(), d.getVegetables(), d.getCaffeine(), d.getStrength(), d.getModerate(), d.getHigh(), d.getSteps());
-             
-            }
-          }
-
-        }
+    	for (int i = 0; i < students.size(); i++){
+    		if (i == studentNumber){
+    			for (Day d : students.get(i).getDays()) {
+    				System.out.format("%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f", d.getSleep(), d.getSugar(), d.getPhone(), d.getFruit(), d.getVegetables(), d.getCaffeine(), d.getStrength(), d.getModerate(), d.getHigh(), d.getSteps());
+    			}
+    		}
+    	}
     }
-    
 }
