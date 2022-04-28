@@ -1,7 +1,9 @@
+import java.util.*;
+
 import java.util.ArrayList;
 
 public class Students {
-    private ArrayList<Student> students = new ArrayList<Student>();
+    private ArrayList<Student> students;
     public Students(){
     }
 
@@ -10,16 +12,16 @@ public class Students {
     }
 
     public void setStudents(ArrayList<Student> students) {
-        this.students = students;
+        students = students;
     }
     
     public void oneStudent(int studentNumber){
-    	for (int i = 0; i < students.size(); i++){
-    		if (i == studentNumber){
-    			for (Day d : students.get(i).getDays()) {
-    				System.out.format("%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f%10.1f", d.getSleep(), d.getSugar(), d.getPhone(), d.getFruit(), d.getVegetables(), d.getCaffeine(), d.getStrength(), d.getModerate(), d.getHigh(), d.getSteps());
-    			}
-    		}
-    	}
+      System.out.format("%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s%n", "Sleep:", "Sugar:", "Phone:", "Fruit:", "Vegetables:", "Caffeine:", "Strength:", "Moderate:", "High:", "Steps:");
+      
+      
+        for (Day d : students.get(studentNumber-1).getDays()) {
+              System.out.format("%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%n", d.getSleep(), d.getSugar(), d.getPhone(), d.getFruit(), d.getVegetables(), d.getCaffeine(), d.getStrength(), d.getModerate(), d.getHigh(), d.getSteps());
+          }
+      
     }
 }
