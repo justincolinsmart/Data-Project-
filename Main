@@ -11,11 +11,68 @@ public class Main {
 
     Gson gson = new Gson();
     Students students = gson.fromJson(input, Students.class);
+
+    boolean exit = false;
+    while (exit != true){
+      System.out.printf("%nSelect a category from the list below, -1 to exit%n1  -  Stats for 1 student%n2  -  Stats for all students%n3  -  Min, max, range or avg for all students%n4  -  Statistical analysis%n5  -  Health check%n");
+      int menu = sc.nextInt();
+      if (menu == 1){
+        System.out.println("Please enter student ID:");
+        int studentNumber = sc.nextInt();
+        students.printStudent(studentNumber);
+      }
+      
+      if (menu == 2){
+        students.printAllStudents();
+      }
+      
+      if (menu == 3){
+        System.out.printf("%nPlease pick a category:%n1  -  max%n2  -  min%n3  -  avg%n4  -  all%n");
+        int menu2 = sc.nextInt();
+        if (menu2 == 1){
+          System.out.printf("%nPlease enter category:%n0 - Sleep%n1 - Sugar%n0 - Phone%n3 - Fruit%n4 - Vegetables%n5 - Caffeine%n6 - Strength%n7 - Moderate%n8 - High%n9 - Steps%n");
+          int s1 = sc.nextInt();
+          System.out.printf("%nMax for category %d is: %n", s1);
+          System.out.println(students.maxCategory(s1));
+        }
+        if (menu2 == 2){
+          System.out.printf("Please enter category:%n0 - Sleep%n1 - Sugar%n0 - Phone%n3 - Fruit%n4 - Vegetables%n5 - Caffeine%n6 - Strength%n7 - Moderate%n8 - High%n9 - Steps%n");
+          int s1 = sc.nextInt();
+          System.out.printf("%nMin for category %d is: %n", s1);
+          System.out.println(students.minCategory(s1));
+        }
+        if (menu2 == 3){
+          System.out.printf("Please enter category:%n0 - Sleep%n1 - Sugar%n0 - Phone%n3 - Fruit%n4 - Vegetables%n5 - Caffeine%n6 - Strength%n7 - Moderate%n8 - High%n9 - Steps%n");
+          int s1 = sc.nextInt();
+          System.out.printf("%nAverage for category %d is: %n", s1);
+          System.out.println(students.averageCategory(s1));
+        }
+        if (menu2 == 4){
+          System.out.printf("%nStats for all categories%n%n");
+          students.mathChart();
+        }
+        
+      }
+
+      if (menu == 4){
+        
+      }
+
+      if (menu == 5){
+      
+      }
+
+      if (menu == -1){
+        exit = true;
+        System.out.printf("Cya later!%n");
+      }
+
+
+      
+    }
     
     
-    System.out.println("Please enter student ID:");
-    int studentNumber = sc.nextInt();
-    oneStudent(studentNumber);
+  
     
     
     input.close();
