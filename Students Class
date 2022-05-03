@@ -25,14 +25,21 @@ public class Students {
 //    }
     
     public void printStudent(int studentNumber) {
+    	System.out.printf("-----------------%nStudent Number %d%n-----------------", studentNumber);
     	for(int i = 0; i < getStudents().get(studentNumber).getDays().size(); ++i) {
-    		System.out.printf("%nDay %d%n", i);
+    		System.out.printf("%nDay %d%n", i+1);
 	    	for(int j = 0; j < getStudents().get(studentNumber).getDays().get(i).dayData().length; j ++) {
 	    		System.out.printf("%-12s%-12.1f%n", getStudents().get(studentNumber).getDays().get(i).dayCategories()[j] , getStudents().get(studentNumber).getDays().get(i).dayData()[j]);
 	    	}
     	}
     }
     
+    public void printAllStudents() {
+    	for(int i = 0; i < students.size(); i++) {
+    		
+    		printStudent(i);
+    	}
+    }
     
         
     public float maxCategory(int category) {
@@ -67,4 +74,23 @@ public class Students {
     	
     	return total/students.size()/students.get(0).getDays().size();
     }
+    
+    public void mathChart() {
+    	System.out.printf("%22s%20s%22s%n%s%n", "Min", "Max", "Avg", "-----------------------------------------------------------------");
+    	for(int i = 0; i < students.get(0).getDays().get(0).dayData().length; i++) {
+    		System.out.printf("%-12s%-5s%5.1f|%20.1f|%20.1f|%n", students.get(i).getDays().get(0).dayCategories()[i], " ", minCategory(i), maxCategory(i), averageCategory(i));
+    	}
+    }
+    
+    public void healthCheck(int studentNumber) {
+    	System.out.printf("%nHealth Check for Student Number %d%n", studentNumber);
+    	for(int i = 0; i < students.get(0).getDays().get(0).dayData().length; i++) {
+    		if(students.get(i).getDays().get(i).getSleep() < 500) {
+    			
+    		}
+    		System.out.printf("%-12s%n", students.get(i).getDays().get(0).dayCategories()[i]);
+    	}	
+    }
+    	
+    
 }
