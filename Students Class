@@ -3,41 +3,68 @@ import java.util.*;
 import java.util.ArrayList;
 
 public class Students {
-  private ArrayList<Student> students;
-  public Students(){
-  }
-
-  public ArrayList<Student> getStudents() {
-    return students;
-  }
-
-  public void setStudents(ArrayList<Student> students) {
-    students = students;
-  }
-  
-  public void oneStudent(int studentNumber){
-    System.out.format("%nData for subject %d:%n", studentNumber);
-    System.out.format("%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s%n", "Sleep:", "Sugar:", "Phone:", "Fruit:", "Vegetables:", "Caffeine:", "Strength:", "Moderate:", "High:", "Steps:");
-    for (Day d : students.get(studentNumber-1).getDays()) {
-      System.out.format("%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%n", d.getSleep(), d.getSugar(), d.getPhone(), d.getFruit(), d.getVegetables(), d.getCaffeine(), d.getStrength(), d.getModerate(), d.getHigh(), d.getSteps());
+    private ArrayList<Student> students;
+    public Students(){
     }
-    System.out.format("%n");
-  }
-  
-  public void allStudents(){
-    System.out.format("%nData for all Subjects:%n");
-    for (int i = 0; i < students.size(); i++){
-      
-      
-      System.out.format("%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s%n", "Sleep:", "Sugar:", "Phone:", "Fruit:", "Vegetables:", "Caffeine:", "Strength:", "Moderate:", "High:", "Steps:");
-      
-      for (Day d : students.get(i).getDays()) {
-      System.out.format("%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%n", d.getSleep(), d.getSugar(), d.getPhone(), d.getFruit(), d.getVegetables(), d.getCaffeine(), d.getStrength(), d.getModerate(), d.getHigh(), d.getSteps());
-      }
-      System.out.format("%n");
+
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(ArrayList<Student> students) {
+        this.students = students;
+    }
+    
+//    public void oneStudent(int studentNumber){
+//      System.out.format("%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s%n", "Sleep:", "Sugar:", "Phone:", "Fruit:", "Vegetables:", "Caffeine:", "Strength:", "Moderate:", "High:", "Steps:");
+//      
+//      
+//        for (Day d : students.get(studentNumber-1).getDays()) {
+//              System.out.format("%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%n", d.getSleep(), d.getSugar(), d.getPhone(), d.getFruit(), d.getVegetables(), d.getCaffeine(), d.getStrength(), d.getModerate(), d.getHigh(), d.getSteps());
+//          }
+//    }
+    
+    public void printStudent(int studentNumber) {
+    	for(int i = 0; i < getStudents().get(studentNumber).getDays().size(); ++i) {
+    		System.out.printf("%nDay %d%n", i);
+	    	for(int j = 0; j < getStudents().get(studentNumber).getDays().get(i).dayData().length; j ++) {
+	    		System.out.printf("%-12s%-12.1f%n", getStudents().get(studentNumber).getDays().get(i).dayCategories()[j] , getStudents().get(studentNumber).getDays().get(i).dayData()[j]);
+	    	}
+    	}
     }
     
     
-  }
-  
+        
+    public float maxCategory(int category) {
+    	float maximum = Float.MIN_VALUE;
+    	for(int i = 0; i < students.size(); i++) {
+    		for(int j = 0; j < students.get(i).getDays().size(); j ++) {
+    			if(students.get(i).getDays().get(j).dayData()[category] >= maximum) {
+    				maximum = students.get(i).getDays().get(j).dayData()[category];
+    			}
+    		}	
+    	}
+    	return maximum;
+    }
+    public float minCategory(int category) {
+    	float minimum = Float.MAX_VALUE;
+    	for(int i = 0; i < students.size(); i++) {
+    		for(int j = 0; j < students.get(i).getDays().size(); j ++) {
+    			if(students.get(i).getDays().get(j).dayData()[category] <= minimum) {
+    				minimum = students.get(i).getDays().get(j).dayData()[category];
+    			}
+    		}	
+    	}
+    	return minimum;
+    }
+    public float averageCategory(int category) {
+    	float total = 0;
+    	for(int i = 0; i < students.size(); i++) {
+    		for(int j = 0; j < students.get(i).getDays().size(); j ++) {
+    				total += students.get(i).getDays().get(j).dayData()[category];
+    		}	
+    	}
+    	
+    	return total/students.size()/students.get(0).getDays().size();
+    }
 }
