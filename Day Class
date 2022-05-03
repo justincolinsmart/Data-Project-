@@ -1,3 +1,6 @@
+import java.lang.reflect.Field;
+import java.util.*;
+
 public class Day {
     private float sleep;
     private float sugar;
@@ -10,10 +13,7 @@ public class Day {
     private float high;
     private float steps;
 
-    public Day(){
-
-    }
-
+   
     public float getSleep() {
         return sleep;
     }
@@ -93,4 +93,21 @@ public class Day {
     public void setSteps(float steps) {
         this.steps = steps;
     }
+
+	@Override
+	public String toString() {
+		return "Day [sleep=" + sleep + ", sugar=" + sugar + ", phone=" + phone + ", fruit=" + fruit + ", vegetables="
+				+ vegetables + ", caffeine=" + caffeine + ", strength=" + strength + ", moderate=" + moderate
+				+ ", high=" + high + ", steps=" + steps + "]";
+	}
+    
+	public float[] dayData() {
+    	return new float[] {this.sleep, this.sugar, this.phone, this.fruit, this.vegetables, this.caffeine, this.strength, this.moderate, this.high, this.steps};
+    }
+	public String[] dayCategories() {
+    	return new String[] {"Sleep", "Sugar", "Phone", "Fruit", "Vegetables", "Caffeine", "Strength", "Moderate", "High", "Steps"};
+    }
+
+
+
 }
