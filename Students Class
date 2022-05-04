@@ -2,6 +2,8 @@ import java.util.*;
 
 import java.util.ArrayList;
 
+
+
 public class Students {
     private ArrayList<Student> students;
     public Students(){
@@ -55,6 +57,15 @@ public class Students {
     	}
     	return minimum;
     }
+
+    public float range(int category) {
+      float top = maxCategory(category);
+      float bot = minCategory(category);
+      float range = top - bot;
+      //System.out.printf("%nThe range for category %d is %f%n", category, range);
+      return range;
+      
+    }
     public float averageCategory(int category) {
     	float total = 0;
     	for(int i = 0; i < students.size(); i++) {
@@ -74,11 +85,53 @@ public class Students {
     }
     
     public void mathChart() {
-    	System.out.printf("%22s%20s%22s%n%s%n", "Min", "Max", "Avg", "-----------------------------------------------------------------");
+    	System.out.printf("%22s%21s%21s%21s%n%s%n", "Min", "Max", "Avg", "Range", "--------------------------------------------------------------------------------------");
     	for(int i = 0; i < students.get(0).getDays().get(0).dayData().length; i++) {
-    		System.out.printf("%-12s%-5s%5.1f|%20.1f|%20.1f|%n", students.get(i).getDays().get(0).dayCategories()[i], " ", minCategory(i), maxCategory(i), averageCategory(i));
+    		System.out.printf("%-12s%-5s%5.1f|%20.1f|%20.1f|%20.1f|%n", students.get(i).getDays().get(0).dayCategories()[i], " ", minCategory(i), maxCategory(i), averageCategory(i), range(i));
     	}
     }
+
+
+  
+    public void statAnalysis(int category) {
+      double deviation;
+      double variance;
+
+      float average = 0;
+      int totalCount = 0;
+      float sum = 0;
+
+      //ArrayList of all number in category
+      ArrayList<Float> x = new ArrayList<Float>();
+      for (int i = 0; i < students.size(); i++){
+        for(int j = 0; j < students.get(i).getDays().size(); j ++) {
+    				x.add(students.get(i).getDays().get(j).dayData()[category]);   
+    		}
+      }
+
+      //Average of all categorys + total number of stats
+      for(int i = 0; i < students.size(); i++) {
+    		for(int j = 0; j < students.get(i).getDays().size(); j ++) {
+    				average += students.get(i).getDays().get(j).dayData()[category];
+            totalCount += 1;
+    		}	
+    	}
+      average = average/totalCount;
+
+      //Calculating sigma
+      for (int j = 0; j < x.size(); j++){
+        sum += Math.pow((x.get(j) - average), 2);
+      }
+      
+      //Final deviation answer
+      deviation = Math.sqrt(sum/totalCount);
+      variance = Math.pow(deviation, 2);
+      
+      System.out.format("%nStandard deviation for category %d is:%n%.1f%n%n", category, deviation);
+      System.out.format("Variance for category %d is:%n%.1f%n%n", category, variance);
+    }
+
+  
     
     public void healthChart(int studentNumber) {
     	System.out.printf("%n----------------------------------%nHealth Check for Student Number %d%n----------------------------------%n", studentNumber);
