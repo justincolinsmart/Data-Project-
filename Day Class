@@ -1,91 +1,113 @@
+import java.lang.reflect.Field;
 import java.util.*;
 
-import java.util.ArrayList;
+public class Day {
+    private float sleep;
+    private float sugar;
+    private float phone;
+    private float fruit;
+    private float vegetables;
+    private float caffeine;
+    private float strength;
+    private float moderate;
+    private float high;
+    private float steps;
 
-public class Students {
-    private ArrayList<Student> students;
-    public Students(){
+   
+    public float getSleep() {
+        return sleep;
     }
 
-    public ArrayList<Student> getStudents() {
-        return students;
+    public void setSleep(float sleep) {
+        this.sleep = sleep;
     }
 
-    public void setStudents(ArrayList<Student> students) {
-        this.students = students;
+    public float getSugar() {
+        return sugar;
     }
+
+    public void setSugar(float sugar) {
+        this.sugar = sugar;
+    }
+
+    public float getPhone() {
+        return phone;
+    }
+
+    public void setPhone(float phone) {
+        this.phone = phone;
+    }
+
+    public float getFruit() {
+        return fruit;
+    }
+
+    public void setFruit(float fruit) {
+        this.fruit = fruit;
+    }
+
+    public float getVegetables() {
+        return vegetables;
+    }
+
+    public void setVegetables(float vegetables) {
+        this.vegetables = vegetables;
+    }
+
+    public float getCaffeine() {
+        return caffeine;
+    }
+
+    public void setCaffeine(float caffeine) {
+        this.caffeine = caffeine;
+    }
+
+    public float getStrength() {
+        return strength;
+    }
+
+    public void setStrength(float strength) {
+        this.strength = strength;
+    }
+
+    public float getModerate() {
+        return moderate;
+    }
+
+    public void setModerate(float moderate) {
+        this.moderate = moderate;
+    }
+
+    public float getHigh() {
+        return high;
+    }
+
+    public void setHigh(float high) {
+        this.high = high;
+    }
+
+    public float getSteps() {
+        return steps;
+    }
+
+    public void setSteps(float steps) {
+        this.steps = steps;
+    }
+
+	@Override
+	public String toString() {
+		return "Day [sleep=" + sleep + ", sugar=" + sugar + ", phone=" + phone + ", fruit=" + fruit + ", vegetables="
+				+ vegetables + ", caffeine=" + caffeine + ", strength=" + strength + ", moderate=" + moderate
+				+ ", high=" + high + ", steps=" + steps + "]";
+	}
     
-//    public void oneStudent(int studentNumber){
-//      System.out.format("%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s%n", "Sleep:", "Sugar:", "Phone:", "Fruit:", "Vegetables:", "Caffeine:", "Strength:", "Moderate:", "High:", "Steps:");
-//      
-//      
-//        for (Day d : students.get(studentNumber-1).getDays()) {
-//              System.out.format("%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%n", d.getSleep(), d.getSugar(), d.getPhone(), d.getFruit(), d.getVegetables(), d.getCaffeine(), d.getStrength(), d.getModerate(), d.getHigh(), d.getSteps());
-//          }
-//    }
-    
-    public void printStudent(int studentNumber) {
-    	System.out.printf("-----------------%nStudent Number %d%n-----------------", studentNumber);
-    	for(int i = 0; i < getStudents().get(studentNumber).getDays().size(); ++i) {
-    		System.out.printf("%nDay %d%n", i+1);
-	    	for(int j = 0; j < getStudents().get(studentNumber).getDays().get(i).dayData().length; j ++) {
-	    		System.out.printf("%-12s%-12.1f%n", getStudents().get(studentNumber).getDays().get(i).dayCategories()[j] , getStudents().get(studentNumber).getDays().get(i).dayData()[j]);
-	    	}
-    	}
+	public float[] dayData() {
+    	return new float[] {this.sleep, this.sugar, this.phone, this.fruit, this.vegetables, this.caffeine, this.strength, this.moderate, this.high, this.steps};
     }
-    
-    public void printAllStudents() {
-    	for(int i = 0; i < students.size(); i++) {
-    		
-    		printStudent(i);
-    	}
+	public String[] dayCategories() {
+    	return new String[] {"Sleep", "Sugar", "Phone", "Fruit", "Vegetables", "Caffeine", "Strength", "Moderate", "High", "Steps"};
     }
-    
-        
-    public float maxCategory(int category) {
-    	float maximum = Float.MIN_VALUE;
-    	for(int i = 0; i < students.size(); i++) {
-    		for(int j = 0; j < students.get(i).getDays().size(); j ++) {
-    			if(students.get(i).getDays().get(j).dayData()[category] >= maximum) {
-    				maximum = students.get(i).getDays().get(j).dayData()[category];
-    			}
-    		}	
-    	}
-    	return maximum;
-    }
-    public float minCategory(int category) {
-    	float minimum = Float.MAX_VALUE;
-    	for(int i = 0; i < students.size(); i++) {
-    		for(int j = 0; j < students.get(i).getDays().size(); j ++) {
-    			if(students.get(i).getDays().get(j).dayData()[category] <= minimum) {
-    				minimum = students.get(i).getDays().get(j).dayData()[category];
-    			}
-    		}	
-    	}
-    	return minimum;
-    }
-    public float averageCategory(int category) {
-    	float total = 0;
-    	for(int i = 0; i < students.size(); i++) {
-    		for(int j = 0; j < students.get(i).getDays().size(); j ++) {
-    				total += students.get(i).getDays().get(j).dayData()[category];
-    		}	
-    	}
-    	
-    	return total/students.size()/students.get(0).getDays().size();
-    }
-    
-    public void averageChart() {
-    	for(int i = 0; i < students.get(0).getDays().get(0).dayCategories().length; i++) {
-    		
-    	}
-    }
-    
-    public void mathChart() {
-    	System.out.printf("%20s%20s%20s%n%s%n", "Min", "Max", "Avg", "----------------------------------------------------------------");
-    	for(int i = 0; i < students.get(0).getDays().get(0).dayData().length; i++) {
-    		System.out.printf("%-12s%-5s%-5.1f%20.1f|%20.1f|%n", students.get(i).getDays().get(0).dayCategories()[i], "|", minCategory(i), maxCategory(i), averageCategory(i));
-    	}
-    }
-    
-}
+
+	public float[] healthyNum() {
+		return new float[] {600, 5, 100, 100, 5, 5, 3, 30, 30, 6000};
+	}
