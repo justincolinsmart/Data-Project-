@@ -15,21 +15,12 @@ public class Students {
         this.students = students;
     }
     
-//    public void oneStudent(int studentNumber){
-//      System.out.format("%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s%n", "Sleep:", "Sugar:", "Phone:", "Fruit:", "Vegetables:", "Caffeine:", "Strength:", "Moderate:", "High:", "Steps:");
-//      
-//      
-//        for (Day d : students.get(studentNumber-1).getDays()) {
-//              System.out.format("%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%-12.1f%n", d.getSleep(), d.getSugar(), d.getPhone(), d.getFruit(), d.getVegetables(), d.getCaffeine(), d.getStrength(), d.getModerate(), d.getHigh(), d.getSteps());
-//          }
-//    }
-    
     public void printStudent(int studentNumber) {
     	System.out.printf("-----------------%nStudent Number %d%n-----------------", studentNumber);
     	for(int i = 0; i < getStudents().get(studentNumber).getDays().size(); ++i) {
-    		System.out.printf("%nDay %d%n", i+1);
+    		System.out.printf("%n-------------------%nDay %d%n-------------------%n", i+1);
 	    	for(int j = 0; j < getStudents().get(studentNumber).getDays().get(i).dayData().length; j ++) {
-	    		System.out.printf("%-12s%-12.1f%n", getStudents().get(studentNumber).getDays().get(i).dayCategories()[j] , getStudents().get(studentNumber).getDays().get(i).dayData()[j]);
+	    		System.out.printf("%-12s|%-12.1f%n", getStudents().get(studentNumber).getDays().get(i).dayCategories()[j] , getStudents().get(studentNumber).getDays().get(i).dayData()[j]);
 	    	}
     	}
     }
@@ -74,6 +65,13 @@ public class Students {
     	
     	return total/students.size()/students.get(0).getDays().size();
     }
+    public float averageCategoryOneStudent(int category, int studentNumber) {
+    	float total = 0;
+    		for(int j = 0; j < students.get(studentNumber).getDays().size(); j ++) {
+    				total += students.get(studentNumber).getDays().get(j).dayData()[category];
+    		}	
+    	return total/students.get(0).getDays().size();
+    }
     
     public void mathChart() {
     	System.out.printf("%22s%20s%22s%n%s%n", "Min", "Max", "Avg", "-----------------------------------------------------------------");
@@ -82,15 +80,28 @@ public class Students {
     	}
     }
     
-    public void healthCheck(int studentNumber) {
-    	System.out.printf("%nHealth Check for Student Number %d%n", studentNumber);
-    	for(int i = 0; i < students.get(0).getDays().get(0).dayData().length; i++) {
-    		if(students.get(i).getDays().get(i).getSleep() < 500) {
-    			
+    public void healthChart(int studentNumber) {
+    	System.out.printf("%n----------------------------------%nHealth Check for Student Number %d%n----------------------------------%n", studentNumber);
+    	int counter = 0;
+    	for(int i = 0; i < students.get(studentNumber).getDays().get(0).dayData().length; i++) {
+    		boolean healthy = true;
+    		if(averageCategoryOneStudent(i, studentNumber) < students.get(studentNumber).getDays().get(0).healthyNum()[i]) {
+    			healthy = false;
     		}
-    		System.out.printf("%-12s%n", students.get(i).getDays().get(0).dayCategories()[i]);
+    		if(healthy) {
+    			System.out.printf("%-12s|%-12s%n", students.get(i).getDays().get(0).dayCategories()[i], "Healthy");
+    			counter+=1;
+    		}
+    		if(!healthy) {
+    			System.out.printf("%-12s|%-12s%n", students.get(i).getDays().get(0).dayCategories()[i], "Unhealthy");
+    		}
+    		
+    		
     	}	
+    	System.out.printf("%n------------------------------------%nOverall Heath for Student %d: %d / 10%n------------------------------------%n", studentNumber, counter);
     }
     	
     
-}
+}	
+    
+
